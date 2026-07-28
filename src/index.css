@@ -70,10 +70,13 @@ a {
   padding: 20px 24px;
 }
 .brand {
-  font-weight: 800;
-  font-size: 22px;
-  letter-spacing: 0.06em;
-  color: var(--green);
+  display: inline-flex;
+  align-items: center;
+}
+.brand-logo {
+  height: 26px;
+  width: auto;
+  display: block;
 }
 .nav-links {
   display: flex;
@@ -439,7 +442,7 @@ a {
 
 /* ---------- Small phone (≤400px) ---------- */
 @media (max-width: 400px) {
-  .brand { font-size: 20px; }
+  .brand-logo { height: 22px; }
   .nav-links { gap: 14px; }
   .hero-phones-img { max-width: 320px; }
   .stat-num { font-size: 40px; }

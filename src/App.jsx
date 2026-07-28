@@ -119,7 +119,9 @@ export default function App() {
       {/* ---------- Header ---------- */}
       <header className="site-header">
         <div className="container nav">
-          <div className="brand">MOREE</div>
+          <a href="#" className="brand" aria-label="Moree 홈">
+            <Img src="/assets/logo.png" alt="MOREE" className="brand-logo" />
+          </a>
           <nav className="nav-links">
             <a href="#about">서비스 소개</a>
             <a href="#download">다운로드</a>
