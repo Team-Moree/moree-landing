@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { buildPlayStoreUrl, APP_STORE_URL } from './utm'
+import { logLandingView, logDownloadClick } from './analytics'
 
 /* =========================================================================
  * 이미지 슬롯 컴포넌트
@@ -81,9 +83,9 @@ function XIcon() {
   )
 }
 
-function GooglePlayBadge() {
+function GooglePlayBadge({ href, onClick }) {
   return (
-    <a className="store-badge" href="#" aria-label="Google Play에서 다운로드">
+    <a className="store-badge" href={href} target="_blank" rel="noopener noreferrer" onClick={onClick} aria-label="Google Play에서 다운로드">
       <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
         <path d="M3.6 2.3c-.2.2-.3.5-.3.9v17.6c0 .4.1.7.3.9l.1.1L13 12.1v-.2L3.7 2.2l-.1.1z" fill="#00d0ff" />
         <path d="M16.3 15.3 13 12.1v-.2l3.3-3.2.1.1 3.9 2.2c1.1.6 1.1 1.6 0 2.3l-3.9 2.2-.1-.2z" fill="#ffce00" />
@@ -98,9 +100,9 @@ function GooglePlayBadge() {
   )
 }
 
-function AppStoreBadge() {
+function AppStoreBadge({ onClick }) {
   return (
-    <a className="store-badge" href="https://apps.apple.com/kr/app/moree/id6752220897" target="_blank" rel="noopener noreferrer" aria-label="App Store에서 다운로드">
+    <a className="store-badge" href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" onClick={onClick} aria-label="App Store에서 다운로드">
       <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" aria-hidden="true">
         <path d="M16.4 12.6c0-2 1.6-3 1.7-3.1-.9-1.4-2.4-1.5-2.9-1.6-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.2 2-1.4 2.4-.4 6 1 8 .7 1 1.5 2 2.5 2 1 0 1.4-.6 2.6-.6s1.5.6 2.6.6c1.1 0 1.8-1 2.4-2 .8-1.1 1.1-2.2 1.1-2.3 0-.1-2.1-.8-2.1-3.2z" />
         <path d="M14.6 6.6c.5-.7.9-1.6.8-2.6-.8 0-1.8.5-2.4 1.2-.5.6-1 1.6-.8 2.5.9.1 1.8-.4 2.4-1.1z" />
@@ -114,6 +116,14 @@ function AppStoreBadge() {
 }
 
 export default function App() {
+  // 유입 UTM을 referrer로 실은 Play Store URL (마운트 시 1회 계산)
+  const playStoreUrl = useMemo(() => buildPlayStoreUrl(), [])
+
+  // 랜딩페이지 진입 로그 (config 없으면 no-op)
+  useEffect(() => {
+    logLandingView()
+  }, [])
+
   return (
     <>
       {/* ---------- Header ---------- */}
@@ -229,8 +239,8 @@ export default function App() {
           <h2>Moree와 함께 덕질하러 떠나볼까요?</h2>
           <p>생일카페, 팝업부터 전시, 가챠 소식까지 앱에서 확인해요!</p>
           <div className="store-row">
-            <GooglePlayBadge />
-            <AppStoreBadge />
+            <GooglePlayBadge href={playStoreUrl} onClick={() => logDownloadClick('android')} />
+            <AppStoreBadge onClick={() => logDownloadClick('ios')} />
           </div>
         </div>
       </section>
