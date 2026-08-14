@@ -85,6 +85,15 @@ a {
   color: #4a4f57;
 }
 .nav-links a:hover { color: var(--green); }
+/* 모바일 전용 다운로드 아이콘 (기본은 숨김, ≤480px 에서 노출) */
+.nav-download {
+  display: none;
+  width: 24px;
+  height: 24px;
+  color: var(--fg);
+}
+.nav-download svg { width: 100%; height: 100%; display: block; }
+.nav-download:hover { color: var(--green); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -440,10 +449,160 @@ a {
   .footer-social { margin-top: 4px; }
 }
 
-/* ---------- Small phone (≤400px) ---------- */
-@media (max-width: 400px) {
-  .brand-logo { height: 22px; }
-  .nav-links { gap: 14px; }
-  .hero-phones-img { max-width: 320px; }
-  .stat-num { font-size: 40px; }
+/* =========================================================================
+ * Phone (≤480px) — 360px 기준 시안(360.png) 구현
+ * 컨테이너 24px, 축소된 타이포 스케일, 섹션 상하 여백 80px 기준.
+ * ======================================================================= */
+@media (max-width: 480px) {
+  /* .hero/.pain/.solution/.features 는 .container 를 겸하므로
+     padding 재정의 시 좌우 24px 을 반드시 함께 써야 한다. */
+  .container { padding: 0 24px; }
+
+  /* ---------- Header: 텍스트 메뉴 → 다운로드 아이콘 ---------- */
+  .nav { padding: 20px 24px; }
+  .brand-logo { height: 23px; }
+  .nav-links { display: none; }
+  .nav-download { display: inline-flex; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 0 24px 80px; }
+  .hero-phones-img {
+    /* 컨테이너 패딩을 넘어 화면 폭 전체를 쓰는 풀블리드 이미지 */
+    width: calc(100% + 48px);
+    max-width: none;
+    margin: 0 -24px -12px;
+  }
+  .hero h1 { font-size: 18px; line-height: 1.45; margin-bottom: 9px; }
+  .hero-sub { font-size: 13px; line-height: 1.6; margin-bottom: 24px; }
+  .btn-primary {
+    width: 240px;
+    max-width: 100%;
+    height: 48px;
+    padding: 0;
+    font-size: 15px;
+    border-radius: 14px;
+  }
+
+  /* ---------- 시안 기준 본문 텍스트 대비 (muted 대신 진한 회색) ---------- */
+  .hero-sub,
+  .section-head p,
+  .feature-text p,
+  .green-band p,
+  .stat-label { color: #444; }
+  .footer-left,
+  .footer-left .links a,
+  .footer-left .copyright,
+  .footer-social { color: #242527; }
+
+  /* ---------- Section heads ---------- */
+  .section-head h2 { font-size: 16px; line-height: 1.45; margin-bottom: 9px; }
+  .section-head p { font-size: 13px; line-height: 1.6; }
+
+  /* ---------- Pain points ---------- */
+  .pain { padding: 40px 24px 84px; }
+  .bubbles {
+    position: relative;
+    max-width: none;
+    margin-top: 40px;
+    gap: 13px;
+  }
+  .pain-mole {
+    position: absolute;
+    top: -8px;
+    right: 9px;
+    width: 55px;
+    margin: 0;
+    align-self: auto;
+  }
+  .bubble {
+    max-width: 220px;
+    font-size: 11.5px;
+    line-height: 1.55;
+    padding: 8px 14px;
+    border-radius: 14px;
+  }
+  /* 2번째 말풍선만 시안처럼 두 줄로 접히도록 좁게 */
+  .bubble-right { max-width: 186px; }
+  .bubble::after {
+    width: 8px;
+    height: 8px;
+    bottom: -4px;
+    left: 50%;
+    right: auto;
+    border-radius: 2px;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  .bubble-left { margin-left: 32px; }
+  /* 3번째 pain 은 컨테이너 왼쪽에 붙는다 */
+  .bubbles .bubble:nth-child(4) { margin-left: 0; }
+
+  /* ---------- Stats ---------- */
+  .stats-band { padding: 80px 0; }
+  .stats-card {
+    border-radius: 24px;
+    padding: 48px 24px 39px;
+    margin-top: 41px;
+    gap: 41px;
+  }
+  .stat-num { font-size: 38px; margin-bottom: 14px; }
+  .stat-label { font-size: 17px; }
+  .stat-divider { width: 89%; }
+
+  /* ---------- Solution ---------- */
+  .solution { padding: 80px 24px; }
+  .solution-grid { margin-top: 41px; gap: 24px; }
+  .sol-img { max-width: none; border-radius: 24px; }
+
+  /* ---------- Green band ---------- */
+  .green-band { padding: 61px 0 79px; }
+  .band-mole { width: 78px; margin-bottom: 11px; }
+  .green-band h2 { font-size: 16px; line-height: 1.5; margin-bottom: 7px; }
+  .green-band p { font-size: 13px; line-height: 1.65; }
+
+  /* ---------- Features ---------- */
+  .features { padding: 80px 24px; }
+  .feature-row { gap: 25px; margin-bottom: 80px; }
+  .badge { font-size: 11px; padding: 5px 12px; margin-bottom: 12px; }
+  .feature-text h3 { font-size: 16px; line-height: 1.45; margin-bottom: 9px; }
+  .feature-text p { font-size: 13px; line-height: 1.6; }
+  .feature-img { max-width: none; border-radius: 24px; }
+
+  /* ---------- CTA ---------- */
+  .cta { padding: 79px 0; }
+  .app-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+  }
+  .cta h2 { font-size: 16px; line-height: 1.45; margin-bottom: 12px; }
+  .cta p { font-size: 13px; line-height: 1.6; margin-bottom: 23px; }
+  .store-row { flex-direction: row; gap: 12px; flex-wrap: nowrap; }
+  .store-badge {
+    flex: 1 1 0;
+    width: auto;
+    max-width: none;
+    height: 50px;
+    padding: 0 8px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+  /* 좁은 화면(≤340px)에서도 배지 문구가 한 줄로 유지되도록 유동 크기 */
+  .store-badge .txt { white-space: nowrap; }
+  .store-badge .txt small { font-size: min(10px, 3vw); }
+  .store-badge .txt strong { font-size: min(17px, 4.6vw); }
+
+  /* ---------- Footer: 소셜 아이콘이 맨 위 ---------- */
+  .footer { padding: 48px 0 79px; }
+  .footer-inner { gap: 0; }
+  .footer-social {
+    order: -1;
+    gap: 26px;
+    margin: 0 0 18px;
+  }
+  .footer-social svg { width: 21px; height: 21px; }
+  .footer-left { font-size: 15px; }
+  .footer-left .row { margin-bottom: 25px; }
+  .footer-left .links { gap: 16px; margin-bottom: 8px; }
+  .footer-left .copyright { font-size: 14px; line-height: 1.7; }
 }

@@ -65,6 +65,16 @@ const FEATURES = [
   },
 ]
 
+function DownloadIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3v14" />
+      <path d="M6.5 11.5 12 17l5.5-5.5" />
+      <path d="M5 21h14" />
+    </svg>
+  )
+}
+
 function InstagramIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -135,6 +145,10 @@ export default function App() {
             <a href="#about">서비스 소개</a>
             <a href="#download">다운로드</a>
           </nav>
+          {/* 모바일(≤480px)에서 텍스트 메뉴 대신 노출되는 다운로드 아이콘 */}
+          <a href="#download" className="nav-download" aria-label="앱 다운로드">
+            <DownloadIcon />
+          </a>
         </div>
       </header>
 
