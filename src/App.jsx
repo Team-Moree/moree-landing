@@ -58,7 +58,7 @@ const FEATURES = [
   },
   {
     reverse: false,
-    badge: null,
+    badge: '준비 중!',
     title: '나만의 덕질 활동 기록',
     desc: '가고 싶은 행사를 저장하고,\n방문한 행사에 발도장을 남겨보세요.',
     img: '/assets/phone-bookmark.png',
