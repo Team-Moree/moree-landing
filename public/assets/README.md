@@ -12,9 +12,9 @@
 | `mascot-mound.png`    | 초록 밴드 — 흙에서 나오는 몰리 |
 | `phone-recommend.png` | 기능 — 내 취향에 맞는 행사 추천 |
 | `phone-map.png`       | 기능 — 지도에서 한눈에 행사 찾기 |
-| `phone-register.png`  | 기능 — 행사 등록도 간편하게 (준비 중) |
-| `phone-bookmark.png`  | 기능 — 나만의 덕질 활동 기록 (준비 중) |
+| `phone-register.png`  | 기능 — 행사 등록도 간편하게 |
 | `dogam.png`           | 기능 — 몰리로 채우는 덕질 도감 (카드 포함) |
+| `phone-bookmark.png`  | 기능 — 나만의 덕질 활동 기록 (준비 중) |
 | `app-icon.png`        | 하단 CTA 앱 아이콘 + **파비콘**(index.html) |
 
 ## 인라인 (이미지 불필요)
