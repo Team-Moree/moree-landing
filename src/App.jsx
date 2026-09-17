@@ -22,9 +22,9 @@ function Img({ src, alt, className = '', style }) {
 }
 
 const PAINS = [
-  { text: '어디서 정보를 찾는지 모르겠어요.', pos: 'left' },
-  { text: '소규모 행사는 X 포스팅을 수시로 확인해야 해서 번거로워요.', pos: 'right' },
-  { text: '개인 생카를 열었는데 홍보할 곳이 없어요.', pos: 'left' },
+  { pre: '어디서 정보를 찾는지 모르겠어요.', bold: '', pos: 'left' },
+  { pre: '소규모 행사는 X 포스팅을 ', bold: '수시로 확인해야 해서 번거로워요.', pos: 'right' },
+  { pre: '개인 생카를 열었는데 ', bold: '홍보할 곳이 없어요.', pos: 'left' },
 ]
 
 const FEATURES = [
@@ -44,24 +44,24 @@ const FEATURES = [
   },
   {
     reverse: false,
-    badge: '준비 중!',
+    badge: null,
     title: '행사 등록도 간편하게',
     desc: '누구나 쉽게 행사를 등록하고\n더 많은 팬들에게 홍보할 수 있어요.',
     img: '/assets/phone-register.png',
   },
   {
     reverse: true,
-    badge: '준비 중!',
-    title: '나만의 덕질 활동 기록',
-    desc: '가고 싶은 행사를 저장하고,\n방문한 행사에 발도장을 남겨보세요.',
-    img: '/assets/phone-bookmark.png',
-  },
-  {
-    reverse: false,
     badge: null,
     title: '몰리로 채우는 덕질 도감',
     desc: '덕질 스팟에서 아이템을 획득해\n도감을 채워보세요.',
     img: '/assets/dogam.png',
+  },
+  {
+    reverse: false,
+    badge: '준비 중!',
+    title: '나만의 덕질 활동 기록',
+    desc: '가고 싶은 행사를 저장하고,\n방문한 행사에 발도장을 남겨보세요.',
+    img: '/assets/phone-bookmark.png',
   },
 ]
 
@@ -172,7 +172,9 @@ export default function App() {
         <div className="bubbles">
           <Img src="/assets/mascot-surprised.png" alt="놀란 몰리" className="pain-mole" />
           {PAINS.map((p, i) => (
-            <div className={`bubble bubble-${p.pos}`} key={i}>{p.text}</div>
+            <div className={`bubble bubble-${p.pos}`} key={i}>
+              “{p.pre}{p.bold && <strong>{p.bold}</strong>}”
+            </div>
           ))}
         </div>
       </section>
@@ -201,7 +203,7 @@ export default function App() {
       {/* ---------- Solution ---------- */}
       <section className="solution container">
         <div className="section-head">
-          <h2>이제 <span className="hl-green">Moree</span> 하나면 충분해요!</h2>
+          <h2>이제 Moree 하나면 충분해요!</h2>
           <p>
             모리는 흩어진 팬덤 행사 정보를 한곳에 모아,<br />
             팬은 더 쉽게 찾고 주최자는 더 널리 알릴 수 있도록 돕는 플랫폼이에요.
@@ -218,7 +220,7 @@ export default function App() {
         <div className="container">
           <Img src="/assets/mascot-mound.png" alt="흙에서 나오는 몰리" className="band-mole" />
           <h2>
-            서브컬처를 <span className="hl-green">더 쉽고 재밌게!</span><br />
+            서브컬쳐를 <span className="hl-green">더 쉽고 재밌게!</span><br />
             Moree와 함께 덕질하러 떠나볼까요?
           </h2>
           <p>생일카페, 팝업부터 전시, 가챠 소식까지 앱에서 확인해보세요!</p>
@@ -262,7 +264,7 @@ export default function App() {
       <footer className="footer">
         <div className="container footer-inner">
           <div className="footer-left">
-            <div className="row">✉️ 문의 : <a href="mailto:moree.otaku@gmail.com">moree.otaku@gmail.com</a></div>
+            <div className="row">✉️ 문의: <a href="mailto:moree.otaku@gmail.com">moree.otaku@gmail.com</a></div>
             <div className="links">
               <a href="#">이용약관</a>
               <a href="#">업데이트 소식</a>
