@@ -58,7 +58,7 @@ const FEATURES = [
   },
   {
     reverse: false,
-    badge: '준비 중!',
+    badge: null,
     title: '나만의 덕질 활동 기록',
     desc: '가고 싶은 행사를 저장하고,\n방문한 행사에 발도장을 남겨보세요.',
     img: '/assets/phone-bookmark.png',
@@ -188,7 +188,7 @@ export default function App() {
           </div>
           <div className="stats-card">
             <div className="stat">
-              <div className="stat-num">5,800+</div>
+              <div className="stat-num">7,300+</div>
               <div className="stat-label">SNS 누적 팔로워</div>
             </div>
             <div className="stat-divider" />
